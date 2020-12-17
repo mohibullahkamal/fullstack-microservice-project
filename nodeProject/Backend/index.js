@@ -54,23 +54,41 @@
 
 
 // *******************************************************
-// We will use Express to build a fullstack app... with whatever
-// we learned earlier...
-const { readFile } = require ('fs');
-const express = require ('express');
-const app = express();
+// // We will use Express to build a fullstack app... with whatever
+// // we learned earlier...
+// const { readFile } = require ('fs');
+// const express = require ('express');
+// const app = express();
 
-app.get('/', (req, res) => {
-   readFile('../Frontend/home.html', 'utf8', (err, html) => {
-      if (err) {
-         res.status(500).send('sorry, server is down...')
-      }
-      res.send(html);
-   })
-})       
+// app.get('/', (req, res) => {
+//    readFile('../Frontend/home.html', 'utf8', (err, html) => {
+//       if (err) {
+//          res.status(500).send('sorry, server is down...')
+//       }
+//       res.send(html);
+//    })
+// })       
 
-app.listen( process.env.PORT || 3000, () => console.log('App running... Hurry!!'));
+// app.listen( process.env.PORT || 3000, () => console.log('App running... Hurraaaay!!'));
 
 
 
 // *******************************************************
+// Using the above Express solution which used Callback... these 
+// Callbacks can get very confusing... leading to Callback Hell... 
+// therefore we will use Promises instead...
+const { readFile } = require ('fs').promises;
+const express = require ('express');
+const app = express();
+
+app.get('/', async(req, res) => {
+   res.send( await readFile('../Frontend/home.html', 'utf8') );
+});
+
+app.listen( process.env.PORT || 3000, () => console.log('App running using Async/Await...'));
+
+
+
+// *******************************************************
+
+
