@@ -115,6 +115,10 @@ app.get('/all-users', async(req, res) => {
 app.get('/new-user', async(req, res) => {
    res.send( await readFile('../Frontend/newUser.html', 'utf-8'));
 })
+// returns aboutUs page...
+app.get('/about-us', async(req, res) => {
+   res.send( await readFile('../Frontend/aboutUs.html', 'utf-8'))
+})
 
 
 app.listen( process.env.PORT || 3000, () => console.log('App running using - self practice..'))
