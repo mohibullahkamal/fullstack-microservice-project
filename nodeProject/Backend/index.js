@@ -1,15 +1,15 @@
 // *******************************************************
-//**** EVENTS...Useful for cpu intensive tasks... ***/
-const { EventEmitter } = require ('events');
-const eventEmitter = new EventEmitter();
+// //**** EVENTS...Useful for cpu intensive tasks... ***/
+// const { EventEmitter } = require ('events');
+// const eventEmitter = new EventEmitter();
 
-eventEmitter.on('one', () => {console.log('EventEmiiter was a success...')});
-eventEmitter.on('two', () => {console.log('EventEmiiter was a success...')});
-eventEmitter.on('name', (name) => console.log("hello " + name));
+// eventEmitter.on('one', () => {console.log('EventEmiiter was a success...')});
+// eventEmitter.on('two', () => {console.log('EventEmiiter was a success...')});
+// eventEmitter.on('name', (name) => console.log("hello " + name));
 
-eventEmitter.emit('one');
-eventEmitter.emit('two');
-eventEmitter.emit('name', 'nowrin...');
+// eventEmitter.emit('one');
+// eventEmitter.emit('two');
+// eventEmitter.emit('name', 'nowrin...');
 
 
 
@@ -122,16 +122,6 @@ app.get('/about-us', async(req, res) => {
 
 
 app.listen( process.env.PORT || 3000, () => console.log('App running using - self practice..'))
-
-
-// *******************************************************
-
-
-
-
-// *******************************************************
-
-
 
 
 // *******************************************************
