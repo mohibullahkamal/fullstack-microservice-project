@@ -90,38 +90,38 @@
 
 
 // *******************************************************
-// self practice...
-const { readFile } = require('fs').promises;
-const express = require('express');
-const app = express();
+// // self practice...
+// const { readFile } = require('fs').promises;
+// const express = require('express');
+// const app = express();
 
-// returns Home Page
-app.get('/', async(req, res) => {
-   res.send( await readFile('../Frontend/home.html', 'utf-8') ); 
-})
-// returns Home Page... again...lol
-app.get('/home', async(req, res) => {
-   res.send( await readFile('../Frontend/home.html', 'utf-8') ); 
-})
-// returns Form page...
-app.get('/form', async(req, res) => {
-   res.send( await readFile('../Frontend/form.html', 'utf-8') ); 
-})
-// returns all Users page...
-app.get('/all-users', async(req, res) => {
-   res.send( await readFile('../Frontend/allUsers.html', 'utf-8'));
-})
-// returns newUser page...
-app.get('/new-user', async(req, res) => {
-   res.send( await readFile('../Frontend/newUser.html', 'utf-8'));
-})
-// returns aboutUs page...
-app.get('/about-us', async(req, res) => {
-   res.send( await readFile('../Frontend/aboutUs.html', 'utf-8'))
-})
+// // returns Home Page
+// app.get('/', async(req, res) => {
+//    res.send( await readFile('../Frontend/home.html', 'utf-8') ); 
+// })
+// // returns Home Page... again...lol
+// app.get('/home', async(req, res) => {
+//    res.send( await readFile('../Frontend/home.html', 'utf-8') ); 
+// })
+// // returns Form page...
+// app.get('/form', async(req, res) => {
+//    res.send( await readFile('../Frontend/form.html', 'utf-8') ); 
+// })
+// // returns all Users page...
+// app.get('/all-users', async(req, res) => {
+//    res.send( await readFile('../Frontend/allUsers.html', 'utf-8'));
+// })
+// // returns newUser page...
+// app.get('/new-user', async(req, res) => {
+//    res.send( await readFile('../Frontend/newUser.html', 'utf-8'));
+// })
+// // returns aboutUs page...
+// app.get('/about-us', async(req, res) => {
+//    res.send( await readFile('../Frontend/aboutUs.html', 'utf-8'))
+// })
 
 
-app.listen( process.env.PORT || 3000, () => console.log('App running using - self practice..'))
+// app.listen( process.env.PORT || 3000, () => console.log('App running using - self practice..'))
 
 
 // *******************************************************
