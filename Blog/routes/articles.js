@@ -5,4 +5,8 @@ router.get('/new', (req, res) => {
   res.render('articlesView/new')
 });
 
+router.post('/', (req, res) => {
+  
+})
+
 module.exports = router;
