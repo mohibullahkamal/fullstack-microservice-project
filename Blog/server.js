@@ -3,9 +3,12 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
+// app.get('/', (req, res) => {
+//   res.send('Hello Mohib...')
+// })
 
 app.get('/', (req, res) => {
-  res.send('Hello Mohib...')
+  res.render('index')
 })
 
 
