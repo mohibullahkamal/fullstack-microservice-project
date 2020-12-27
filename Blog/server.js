@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
     description: 'Test description...this is just a test...'
   }]
 
-  res.render('index', { 
+  res.render('articlesView/index', { 
     getArticles: articles
   })
 })
