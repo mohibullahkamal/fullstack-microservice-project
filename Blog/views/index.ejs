@@ -10,15 +10,18 @@
     <title>Home</title>
   </head>
 
-
   <body style="background-color:purple;">
     <div class="container">
-      
       <h1 class="mb-4">Blog Articles:</h1>
       <a href="/articles/new" class="btn btn-success">New Article</a>
 
-      <h1><%= getArticles[0].title %></h1>
-      <h2><%= getArticles[0].description %></h2>
+      <% getArticles.forEach(x => { %>
+        <div class="card mat-4">
+          <div class="card mt-4"> <%= x.title %> </div>
+          <div class="card-subtitle" ></div>
+        </div>
+      <% }) %>
+
     </div>
   </body>
 
