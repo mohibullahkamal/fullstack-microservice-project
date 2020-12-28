@@ -7,7 +7,7 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-
+  res.send(req.params.id)
 })
 
 router.post('/', async (req, res) => {
@@ -17,8 +17,8 @@ router.post('/', async (req, res) => {
     markdown: req.body.markdown
   });
   try {
-    ar = await arTable.save();
-    res.redirect(`/articlesView/${ar.id}`)
+    arTable = await arTable.save();
+    res.redirect(`/articlesView/${arTable.id}`)
   } catch (e) {
     console.log(e);
     res.render('articlesView/new', { withPreviouslyEnteredArticleData: arTable})
