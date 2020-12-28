@@ -6,8 +6,15 @@ router.get('/new', (req, res) => {
   res.render('articlesView/new', { withPreviouslyEnteredArticleData: new articleTable() })
 });
 
-router.get('/:id', (req, res) => {
-  res.send(req.params.id)
+router.get('/:id', async (req, res) => {
+  const letsMakeItWorkPerfectly = await articleTable.findById(req.params.id)
+  if (letsMakeItWorkPerfectly == null) res.redirect('/')
+  res.render('articlesView/show', { withPreviouslyEnteredArticleData: letsMakeItWorkPerfectly })
+  try {
+
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 router.post('/', async (req, res) => {
@@ -15,7 +22,7 @@ router.post('/', async (req, res) => {
     title: req.body.title,
     description: req.body.description,
     markdown: req.body.markdown
-  });
+  })
   try {
     arTable = await arTable.save();
     res.redirect(`/articlesView/${arTable.id}`)
