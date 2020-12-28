@@ -11,11 +11,11 @@ const articleSchema = new mongo.Schema({
   markdown: {
     type: String,
     required: true
-  }
+  },
   createdAt: {
     type: Date,
     default: Date.now
   }
 })
 
-module.exports = mongo.model('ArticleTable', articleSchema)
+module.exports = mongo.model('ArticleTableInMongo', articleSchema)

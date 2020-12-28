@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnified
 
 app.set('view engine', 'ejs');
 app.use('/articles', articleRouter);
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false })); //basically saying that we can use all form-fields as input... in 'new.ejs'... we can use it in 'articles.js' ...
 
 // app.get('/', (req, res) => {
 //   res.send('Hello Mohib...')
@@ -34,6 +34,5 @@ app.get('/', (req, res) => {
     getArticles: articles
   })
 })
-
 
 app.listen(5000);
