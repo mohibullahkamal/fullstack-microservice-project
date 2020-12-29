@@ -4,6 +4,8 @@ const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
 const methodOverride = require('method-override')
 const app = express()
+const port = process.env.PORT || 3000
+
 
 mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
@@ -34,4 +36,4 @@ app.get('/', async (req, res) => {
 
 app.use('/articles', articleRouter); //this must come after 'app.use(express.urlencoded(.....))'
 
-app.listen(5000);
+app.listen(port);
