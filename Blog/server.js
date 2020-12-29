@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const articleTable = require('./models/articleModel');
 const articleRouter = require('./routes/articles');
+const methodOverride = require('method-override')
 const app = express();
 
-mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false })); //basically saying that we can use all form-fields as input... in 'new.ejs'... we can use it in 'articles.js' ...
+app.use(methodOverride(''))
 
 // app.get('/', (req, res) => {
 //   res.send('Hello Mohib...')

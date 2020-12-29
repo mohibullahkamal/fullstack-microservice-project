@@ -25,4 +25,11 @@ const articleSchema = new mongo.Schema({
   }
 })
 
+articleSchema.pre('validate', function(next) {
+  if (this.title) {
+    this.slug = slugify(this.title, { lower: true, strict: true })
+  }
+  next();
+});
+
 module.exports = mongo.model('ArticleTableInMongo', articleSchema)
