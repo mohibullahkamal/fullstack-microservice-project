@@ -10,11 +10,6 @@ router.get('/:id', async (req, res) => {
   const letsMakeItWorkPerfectly = await articleTable.findById(req.params.id)
   if (letsMakeItWorkPerfectly == null) res.redirect('/')
   res.render('articlesView/show', { withPreviouslyEnteredArticleData: letsMakeItWorkPerfectly })
-  try {
-
-  } catch (e) {
-    console.log(e)
-  }
 })
 
 router.post('/', async (req, res) => {
@@ -25,7 +20,7 @@ router.post('/', async (req, res) => {
   })
   try {
     arTable = await arTable.save();
-    res.redirect(`/articlesView/${arTable.id}`)
+    res.redirect(`/articlesView/${articleTable.id}`)
   } catch (e) {
     console.log(e);
     res.render('articlesView/new', { withPreviouslyEnteredArticleData: arTable})

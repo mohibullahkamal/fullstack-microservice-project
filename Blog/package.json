@@ -12,7 +12,9 @@
   "dependencies": {
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "mongoose": "^5.11.8"
+    "marked": "^1.2.7",
+    "mongoose": "^5.11.8",
+    "slugify": "^1.4.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

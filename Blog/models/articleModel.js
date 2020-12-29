@@ -1,4 +1,6 @@
 const mongo = require('mongoose');
+const marked = require('marked');
+const slugify = require('slugify');
 
 const articleSchema = new mongo.Schema({
   title: {
@@ -15,6 +17,11 @@ const articleSchema = new mongo.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  slug: {
+    type: String,
+    required: true,
+    unique: true
   }
 })
 

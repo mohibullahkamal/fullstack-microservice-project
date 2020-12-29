@@ -21,9 +21,12 @@
             <h4 class="card-title"> <%= x.title %> </h4>
             <div class="card-subtitle text-muted mb-2"> <%= x.createdAt.toLocaleDateString() %> </div>
             <div class="card-text mb-2"> <%= x.description %> </div>
+            <a href="articles/<%= getFakeArticles.id %> " class="btn btn-primary">
+              Read More
+            </a>
 
+            <a href="/articles/more" class="btn btn-success">Read More</a>
             <a href="/articles/edit" class="btn btn-warning">Edit</a>
-            <a href="/articles/more" class="btn btn-success">More</a>
             <a href="/articles/delete" class="btn btn-danger">Delete</a>
           </div>
         </div>
