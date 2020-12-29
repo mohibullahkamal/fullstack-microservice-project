@@ -1,9 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const articleTable = require('./models/articleModel');
-const articleRouter = require('./routes/articles');
+const express = require('express')
+const mongoose = require('mongoose')
+const Article = require('./models/article')
+const articleRouter = require('./routes/articles')
 const methodOverride = require('method-override')
-const app = express();
+const app = express()
 
 mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
@@ -16,8 +16,9 @@ app.use(methodOverride('_method'))
 // })
 
 app.get('/', async (req, res) => {
-  const getRealDataFromDB = await articleTable.find().sort({ createdAt: 'desc' });
-  res.render('articlesView/index', { getFakeArticles: getRealDataFromDB })
+  const articles = await Article.find().sort({ createdAt: 'desc' })
+  res.render('articles/index', { articles: articles })
+})
 
   // const articlesFakeData = [{
   //   title: 'Test Article...',

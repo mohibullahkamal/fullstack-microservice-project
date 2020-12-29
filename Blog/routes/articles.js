@@ -1,69 +1,50 @@
-const express = require('express');
-const router = express.Router();
-const articleTable = require('./../models/articleModel')
+const express = require('express')
+const Article = require('./../models/article')
+const router = express.Router()
 
 router.get('/new', (req, res) => {
-  res.render('articlesView/new', { withPreviouslyEnteredArticleData: new articleTable() })
-});
-
-// router.get('/:id', async (req, res) => {
-//   const letsMakeItWorkPerfectly = await articleTable.findById(req.params.id)
-//   if (letsMakeItWorkPerfectly == null) res.redirect('/')
-//   res.render('articlesView/show', { withPreviouslyEnteredArticleData: letsMakeItWorkPerfectly })
-// })
+  res.render('articles/new', { article: new Article() })
+})
 
 router.get('/edit/:id', async (req, res) => {
-  const article = await articleTable.findById(req.params.id)
-  res.render('articlesView/edit', { withPreviouslyEnteredArticleData: new articleTable() })
-});
+  const article = await Article.findById(req.params.id)
+  res.render('articles/edit', { article: article })
+})
 
 router.get('/:slug', async (req, res) => {
-  const letsMakeItWorkPerfectly = await articleTable.findOne({ slug: req.params.slug })
-  if (letsMakeItWorkPerfectly == null) res.redirect('/')
-  res.render('articlesView/show', { withPreviouslyEnteredArticleData: letsMakeItWorkPerfectly })
+  const article = await Article.findOne({ slug: req.params.slug })
+  if (article == null) res.redirect('/')
+  res.render('articles/show', { article: article })
 })
 
-router.post('/', async (req, res) => {
-  let arTable = new articleTable({
-    title: req.body.title,
-    description: req.body.description,
-    markdown: req.body.markdown
-  })
-  try {
-    arTable = await arTable.save();
-    // res.redirect(`/articlesView/${articleTable.id}`)
-    res.redirect(`/articlesView/${articleTable.slug}`)
-  } catch (e) {
-    console.log(e);
-    res.render('articlesView/new', { withPreviouslyEnteredArticleData: arTable})
-  }
-})
+router.post('/', async (req, res, next) => {
+  req.article = new Article()
+  next()
+}, saveArticleAndRedirect('new'))
 
-router.put('/:id', (req, res) => {
-
-})
+router.put('/:id', async (req, res, next) => {
+  req.article = await Article.findById(req.params.id)
+  next()
+}, saveArticleAndRedirect('edit'))
 
 router.delete('/:id', async (req, res) => {
-  await articleTable.findByIdAndDelete(req.params.id)
+  await Article.findByIdAndDelete(req.params.id)
   res.redirect('/')
 })
 
 function saveArticleAndRedirect(path) {
-  return (req, res) {
-    let arTable = new articleTable({
-      title: req.body.title,
-      description: req.body.description,
-      markdown: req.body.markdown
-    })
+  return async (req, res) => {
+    let article = req.article
+    article.title = req.body.title
+    article.description = req.body.description
+    article.markdown = req.body.markdown
     try {
-      arTable = await arTable.save();
-      // res.redirect(`/articlesView/${articleTable.id}`)
-      res.redirect(`/articlesView/${articleTable.slug}`)
+      article = await article.save()
+      res.redirect(`/articles/${article.slug}`)
     } catch (e) {
-      console.log(e);
-      res.render('articlesView/${path}', { withPreviouslyEnteredArticleData: arTable})
+      res.render(`articles/${path}`, { article: article })
     }
   }
 }
 
-module.exports = router;
+module.exports = router
