@@ -25,6 +25,10 @@
               Read More
             </a>
 
+            <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+
             <a href="/articles/more" class="btn btn-success">Read More</a>
             <a href="/articles/edit" class="btn btn-warning">Edit</a>
             <a href="/articles/delete" class="btn btn-danger">Delete</a>
