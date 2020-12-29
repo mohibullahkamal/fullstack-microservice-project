@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +10,11 @@
 
 <body>
   <div class="container">
-    <h1 class="mb-4"> 
-      <%= withPreviouslyEnteredArticleData.title %> 
-    </h1>
-
-    <div class="text-muted mb-2"> 
-      <%= withPreviouslyEnteredArticleData.createdAt.toLocaleDateString() %> 
-    </div>
-
-    <a href="/" class="btn btn-secondary">All Articles</a>
-    <a href="/articles/edit/<%= withPreviouslyEnteredArticleData.id %>" class="btn btn-info">Edit</a>
+    <h1 class="mb-4">Edit Article:</h1>
     
-    <div>
-      <%- withPrevouslyEnteredArticleData.sanitizedHtml %> 
-    </div>
-
+    <form action="/articles/<%= articleTable.id %>?_method=PUT" method="POST">
+      <%- include('_form_fields') %>
+    </form>
   </div>
 </body>
-
 </html>
