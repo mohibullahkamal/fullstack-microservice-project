@@ -2,7 +2,8 @@
 
 # services:
 #   app:
-#     container_name: docker-node-mongo
+# #     container_name: docker-node-mongo
+#     container_name: express-app
 #     restart: always
 #     build: .
 #     ports:
@@ -13,4 +14,4 @@
 #     container_name: mongo
 #     image: mongo
 #     ports:
-      # - '27017:27017'
+#       - '27017:27017'
