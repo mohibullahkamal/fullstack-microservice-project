@@ -2,13 +2,13 @@ const express = require('express');
 var router = express.Router();
 var ObjectId = require('mongoose').Types.ObjectId; // check whether valid id...
 
-var { feedbackModel } = require('../models/feedbackModel');
+var { userModel } = require('../models/userModel');
 
-// Get ALL feedbacks from DB...---> localhost:3000/feedbacks/
+// Get ALL users from DB...---> localhost:3000/users/
 router.get('/', (req, res) => {
-	feedbackModel.find((err, docs) => {
+	userModel.find((err, docs) => {
 		if (!err) { res.send(docs); }
-		else { console.log('Error in retrieving feedbacks: ' + JSON.stringify(err, undefined, 2)); }
+		else { console.log('Error in retrieving users: ' + JSON.stringify(err, undefined, 2)); }
 	});
 });
 
@@ -17,25 +17,22 @@ router.get('/:id', (req, res) => {
 	if (!ObjectId.isValid(req.params.id))   //  check to see if mongoId is valid...
 		return res.status(400).send(`No records with the given id: ${req.params.id}`)
 
-	feedbackModel.findById(req.params.id, (err, doc) => {
+	userModel.findById(req.params.id, (err, doc) => {
       if(!err) { res.send(doc); }
-      else { console.log('Error in retrieving feedback: ' + JSON.stringify(err, undefined, 2)); }
+      else { console.log('Error in retrieving user: ' + JSON.stringify(err, undefined, 2)); }
 	})
 });
 
 // Posts NEW data from feedback form (Angular form) to DB...
 router.post('/', (req, res) => {
-	var feed = new feedbackModel({
-		wasHelpful: req.body.wasHelpful,
-		uiIsGood: req.body.uiIsGood,
-		iWillUseIt: req.body.iWillUseIt,
-		recommendOthers: req.body.recommendOthers,
-		suggestions: req.body.suggestions,
+	var newUser = new userModel({
+		name:    req.body.name,
+		email:   req.body.email,
+		comment: req.body.comment
 	});
-	feed.save((err, doc) => {
+	newUser.save((err, doc) => {
 		if (!err) { res.send(doc); }
-		else { console.log('Error in Feedback save: '
-									+ JSON.stringify(err, undefined, 2)); }
+		else { console.log('Error in user save: ' + JSON.stringify(err, undefined, 2)); }
 	});
 });
 
@@ -44,28 +41,26 @@ router.post('/', (req, res) => {
 // 	if (!ObjectId.isValid(req.params.id))   //  check to see if mongoId is valid...
 // 		return res.status(400).send(`No records with the given id: ${req.params.id}`)
 
-// 	var feedUpdate = {
-// 		wasHelpful: req.body.wasHelpful,
-// 		uiIsGood: req.body.uiIsGood,
-// 		iWillUseIt: req.body.iWillUseIt,
-// 		recommendOthers: req.body.recommendOthers,
-// 		suggestions: req.body.suggestions,
+// 	var changeUser = {
+   // name:    req.body.name,
+   // email:   req.body.email,
+   // comment: req.body.comment
 // 	};
 
-// 	feedbackModel.findByIdAndUpdate(req.params.id, { $set: feedUpdate }, { new: true }, (err, doc) => {
+// 	userModel.findByIdAndUpdate(req.params.id, { $set: changeUser }, { new: true }, (err, doc) => {
 // 		if (!err) { res.send(doc); }
 // 		else { console.log('Error in feedback updating : ' + JSON.stringify(err, undefined, 2)); }
 // 	});
 // });
 
-// // Delete feedback from DB...
+// // Delete user from DB...
 // router.delete('/:id', (req, res) => {
 // 	if (!ObjectId.isValid(req.params.id))   //  check to see if mongoId is valid...
 // 		return res.status(400).send(`No records with the given id: ${req.params.id}`)
 
-// 	feedbackModel.findByIdAndRemove(req.params.id, (err, doc) => {
+// 	userModel.findByIdAndRemove(req.params.id, (err, doc) => {
 // 		if (!err) { res.send(doc); }
-// 		else { console.log('Error in feedback delete : ' + JSON.stringify(err, undefined, 2)); }
+// 		else { console.log('Error in user delete : ' + JSON.stringify(err, undefined, 2)); }
 // 	});
 // })
 
