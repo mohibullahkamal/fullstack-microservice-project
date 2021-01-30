@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-var itemModel = mongoose.model('item', {
-   itemId:   { type: String },
-   itemName: { type: String }
-});
+// var itemModel = mongoose.model('item', {
+//    itemId:   { type: String },
+//    itemName: { type: String }
+// });
 
-module.exports = { itemModel };
+// module.exports = { itemModel };
