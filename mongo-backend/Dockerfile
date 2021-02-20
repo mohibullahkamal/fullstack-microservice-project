@@ -14,3 +14,12 @@ COPY . .
 #Expose port and start application
 EXPOSE 3000
 CMD [ "npm", "start" ]
+
+
+# FROM
+# WORKDIR
+# COPY
+# RUN
+# COPY
+# EXPOSE
+# CMD
