@@ -23,3 +23,12 @@ CMD [ "npm", "start" ]
 # COPY
 # EXPOSE
 # CMD
+
+
+# FROM
+# WORKDIR
+# COPY
+# RUN
+# COPY
+# EXPOSE
+# CMD
